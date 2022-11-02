@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class RedPandaLook : MonoBehaviour
 {
-    public float mouseSensitivity = 120f;
-    public Transform redPanda;
-    private float xRotation;
+    public Transform player;
+    public float mouseSensitivity = 450f;
+    private float cameraVerticalRotaion = 0f;
 
-    void Start()
+    private bool lockedCursor = true;
+
+    private void Start()
     {
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float inputX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        cameraVerticalRotaion -= inputY;
+        cameraVerticalRotaion = Mathf.Clamp(cameraVerticalRotaion, -90f, 90f);
+        transform.localEulerAngles = Vector3.right * cameraVerticalRotaion;
 
-        //transform.localRotation = Quaternion.EulerRotation(xRotation, 0f, 0f);
-        redPanda.Rotate(Vector3.up * mouseX);
+        player.Rotate(Vector3.up * inputX);
     }
 }

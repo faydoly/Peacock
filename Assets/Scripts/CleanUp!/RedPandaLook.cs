@@ -10,6 +10,8 @@ public class RedPandaLook : MonoBehaviour
 
     private bool lockedCursor = true;
 
+    //public Transform _camera;
+
     private void Start()
     {
         Cursor.visible = false;
@@ -26,5 +28,8 @@ public class RedPandaLook : MonoBehaviour
         transform.localEulerAngles = Vector3.right * cameraVerticalRotaion;
 
         player.Rotate(Vector3.up * inputX);
+
+        //_camera.Rotate(Vector3.up * inputX);
+        //_camera.Rotate(Vector3.up * cameraVerticalRotaion);
     }
 }

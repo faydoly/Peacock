@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class DoDamage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] int damage;
+    [SerializeField] float distance;
+    [SerializeField] Transform face;
 
-    // Update is called once per frame
+    private RaycastHit _hit;
+
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(face.position, face.forward, out _hit, distance))
+            {
+                if (_hit.transform.tag == "Enemy")
+                {
+                    EnemyHP enemyHP;
+                    _hit.transform.TryGetComponent(out enemyHP);
+                    
+                    Debug.DrawRay(transform.position, Vector3.forward * distance, Color.red);
+
+                    enemyHP.GotDamage(damage);
+                }
+            }
+        }
     }
 }

@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
+    private Animator _anim;
+
     [SerializeField] int EnemyHealthMax;
     [SerializeField] int EnemyHealth;
 
     private void Awake()
     {
         EnemyHealth = EnemyHealthMax;
+
+        _anim = GetComponent<Animator>();
     }
 
-    public void TakeDamage(int damage)
+    private void Update()
+    {
+        if(EnemyHealth <= 0)
+        {
+            _anim.SetBool("Dead", true);
+        }
+    }
+
+    public void GotDamage(int damage)
     {
         EnemyHealth -= damage;
     }

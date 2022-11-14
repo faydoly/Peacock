@@ -20,8 +20,6 @@ public class DoDamage : MonoBehaviour
                 {
                     EnemyHP enemyHP;
                     _hit.transform.TryGetComponent(out enemyHP);
-                    
-                    Debug.DrawRay(transform.position, Vector3.forward * distance, Color.red);
 
                     enemyHP.GotDamage(damage);
                 }

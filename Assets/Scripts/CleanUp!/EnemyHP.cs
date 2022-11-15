@@ -21,8 +21,10 @@ public class EnemyHP : MonoBehaviour
         if(EnemyHealth <= 0)
         {
             _anim.SetBool("Dead", true);
+            Destroy(gameObject);
         }
     }
+
 
     public void GotDamage(int damage)
     {

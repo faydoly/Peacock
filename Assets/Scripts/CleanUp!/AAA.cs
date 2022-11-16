@@ -3,7 +3,7 @@
  * สร้างอาวุธ
  * timer
  * decorate
- * 
+ * collision stay -> sphere dragger
 */
 
 using System.Collections;
@@ -14,7 +14,7 @@ using TMPro;
 
 public class AAA : MonoBehaviour
 {
-    [SerializeField] private float time = 120;
+    [SerializeField] private float time;
 
     [SerializeField] private TMP_Text number;
 
